@@ -1,38 +1,46 @@
 var popupoverlay = document.querySelector(".popup-overlay")
 var popupbox = document.querySelector(".popup-box")
 var addpopupbutton = document.getElementById("add-popup-button")
+var container = document.querySelector(".container")
+
+var addtask = document.getElementById("add-task")
+var cancelpopup = document.getElementById("cancel-popup")
+
+var tasktitleinput = document.getElementById("task-title-input")
+var taskdateinput = document.getElementById("task-date-input")
+var taskdescriptioninput = document.getElementById("task-description-input")
 
 addpopupbutton.addEventListener("click", function () {
-    popupoverlay.style.display = "block"
-    popupbox.style.display = "block"
+  popupoverlay.style.display = "block"
+  popupbox.style.display = "block"
 })
 
-var container = document.querySelector(".container")
-var addbook = document.getElementById("add-book")
+addtask.addEventListener("click", function (event) {
+  event.preventDefault()
 
-var booktitleinput = document.getElementById("book-title-input")
-var bookauthorinput = document.getElementById("book-author-input")
-var bookdescriptioninput = document.getElementById("book-description-input")
+  var div = document.createElement("div")
+  div.setAttribute("class", "book-container")
+  div.innerHTML = `
+    <h2>${tasktitleinput.value}</h2>
+    <h3>${taskdateinput.value}</h3>
+    <p>${taskdescriptioninput.value}</p>
+    <button onclick="deletebook(event)">Delete</button>
+  `
+  container.append(div)
 
-addbook.addEventListener("click", function (event) {
-    event.preventDefault()
+  popupoverlay.style.display = "none"
+  popupbox.style.display = "none"
 
-    var div = document.createElement("div")
-    div.setAttribute("class", "book-container")
+  alert("Task added successfully")
+})
 
-    div.innerHTML = `
-        <h2>${booktitleinput.value}</h2>
-        <h3>${bookauthorinput.value}</h3>
-        <p>${bookdescriptioninput.value}</p>
-        <button onclick="deletebook(event)">Delete</button>
-    `
-
-    container.append(div)
-
-    popupoverlay.style.display = "none"
-    popupbox.style.display = "none"
+cancelpopup.addEventListener("click", function (event) {
+  event.preventDefault()
+  popupoverlay.style.display = "none"
+  popupbox.style.display = "none"
+  alert("Task cancelled")
 })
 
 function deletebook(event) {
-    event.target.parentElement.remove()
+  event.target.parentElement.remove()
 }
