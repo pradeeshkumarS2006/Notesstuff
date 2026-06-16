@@ -8,6 +8,7 @@ var cancelpopup = document.getElementById("cancel-popup")
 
 var tasktitleinput = document.getElementById("task-title-input")
 var taskdateinput = document.getElementById("task-date-input")
+var tasktimeinput = document.getElementById("task-time-input")
 var taskdescriptioninput = document.getElementById("task-description-input")
 
 addpopupbutton.addEventListener("click", function () {
@@ -23,6 +24,7 @@ addtask.addEventListener("click", function (event) {
   div.innerHTML = `
     <h2>${tasktitleinput.value}</h2>
     <h3>${taskdateinput.value}</h3>
+    <h3>${tasktimeinput.value}</h3>
     <p>${taskdescriptioninput.value}</p>
     <button onclick="deletebook(event)">Delete</button>
   `
